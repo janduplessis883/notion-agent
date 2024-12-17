@@ -59,24 +59,38 @@ if not NOTION_TOKEN or not OPENAI_API_KEY or not NOTION_ENDPOINT or not NOTION_D
     raise ValueError("One or more required environment variables are missing.")
 
 class DatabaseDataFetcherTool(BaseTool):
+    """
+    Tool to fetch the structure and properties of a Notion Database.
+    """
     name: str = "Notion Database Data Fetcher"
     description: str = "Fetches Notion Database structure and properties."
 
-    nh: ClassVar[NotionHelper] = NotionHelper()
-    database_id: str = "136fdfd68a9780a3ae4be27f473bad08?"
+    headers: ClassVar[Dict[str, str]] = {
+        "Authorization": f"Bearer {NOTION_TOKEN}",
+        "Notion-Version": NOTION_VERSION,
+        "Content-Type": "application/json"
+    }
+
+    database_id: str = "136fdfd68a9780a3ae4be27f473bad08"
 
     def _run(self) -> Union[dict, str]:
         """
         Fetch all the properties and structure of a Notion database.
-        """
-        response = self.nh.get_database(database_id=self.database_id)
-        return response
 
-        if isinstance(response, dict):
-            return response
-        else:
-            # Fallback in case of timeouts or other issues
-            return {"error": "Failed to fetch data from Notion. Please try again."}
+        Returns:
+            Union[dict, str]: The database structure or an error message.
+        """
+        url = f"{NOTION_ENDPOINT}/databases/{self.database_id}"
+
+        try:
+            response = requests.get(url, headers=self.headers)
+            if response.status_code == 200:
+                return response.json()
+            else:
+                return f"Error {response.status_code}: {response.text}"
+        except Exception as e:
+            return f"An error occurred: {str(e)}"
+
 
 
 class PageDataFetcherTool(BaseTool):
