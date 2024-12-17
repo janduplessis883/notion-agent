@@ -1,0 +1,35 @@
+data_collection:
+  description: >
+    The datetime_now is {datetime_now}. Explicitely Repeat the date today and the current time according to your input {datetime_now}
+    Gather a complete understanding of the Notion database, including its structure and all tasks or page data.
+    - Use the Notion Database Data Fetcher tool to retrieve the database schema. This will explain the structure and properties of the database.
+    - Use the PageDataFetcher Tool to retrieve all page data, ensuring that each page/task is identified with its corresponding page_id.
+  expected_output: >
+    - A full report detailing the database schema and all retrieved pages/tasks.
+    - Present all tasks in a well-formatted Markdown table, including their corresponding page_id for easy reference when scheduling.
+
+create_new_tasks:
+  description: >
+    Update or create tasks in the Notion database as required to align with user instructions. The current date and time is {datetime_now}
+    - When creating new tasks based on user prompts:
+      - Set the task status to 'Not started'.
+      - Set the priority to the value specified in the user prompt: High, Medium, or Low.
+      - Set the Due Date for new tasks to today's date (retrieved from {datetime_now}).
+      - If there are no new tasks to create skip this task.
+  expected_output: >
+    - Newly created tasks with the correct status, priority, and Due Date.
+
+reschedule_tasks:
+  description: >
+    Reschedule tasks in the Notion database for optimal time management. The current date and time is {datetime_now}
+    - Prioritize tasks based on their importance: High-priority tasks first, followed by Medium, and then Low-priority tasks.
+    - reschedule tasks only during working hours:
+      - Monday, Wednesday, and Thursday from 09:00 to 16:00.
+    - Reschedule any excisting tasks that are not marked 'Done' and were due on a previous day, identify tasks to reschedule by page_id.
+      - Move these tasks to the next available time slot on today's date.
+      - Ensure excisting tasks scheduled earlier today, but not completed, are rescheduled for a time later today.
+    - Use time-blocking techniques to avoid overlapping tasks. Schedule tasks sequentially.
+    - If there are not tasks to reschedule skip this task.
+  expected_output: >
+    - A detailed summary of the updated schedule, including:
+      - Clear allocation of tasks during working hours with no overlaps.
