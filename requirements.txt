@@ -1,5 +1,4 @@
 crewai
 crewai_tools
 streamlit
-sqlite3==3.35.0
 requests
