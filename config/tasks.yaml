@@ -29,7 +29,6 @@ reschedule_tasks:
       - Move these tasks to the next available time slot on today's date.
       - Ensure excisting tasks scheduled earlier today, but not completed, are rescheduled for a time later today.
     - Use time-blocking techniques to avoid overlapping tasks. Schedule tasks sequentially.
-    - If there are not tasks to reschedule skip this task.
   expected_output: >
     - A detailed summary of the updated schedule, including:
       - Clear allocation of tasks during working hours with no overlaps.

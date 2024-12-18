@@ -236,7 +236,7 @@ class NewTaskCreationTool(BaseTool):
 
 class RescheduleExcistingTasks(BaseTool):
     name: str = "Reschedule Existing Task Tool"
-    description: str = "Reschedules an existing task identified by page_id, with a new start date time and end date time."
+    description: str = "Reschedules a single existing task, identified by page_id, with a new start date time and end date time."
 
     headers: ClassVar[Dict[str, str]] = {
         "Authorization": f"Bearer {NOTION_TOKEN}",
@@ -283,12 +283,10 @@ data_collection_agent = Agent(
 
 )
 
-
 calendar_scheduler_agent = Agent(
   config=agents_config['calendar_scheduler_agent'],
   tools=[RescheduleExcistingTasks()],
 )
-
 
 # Creating Tasks
 data_collection = Task(
@@ -296,13 +294,11 @@ data_collection = Task(
   agent=data_collection_agent
 )
 
-
 reschedule_tasks = Task(
   config=tasks_config['reschedule_tasks'],
   agent=calendar_scheduler_agent,
   tools=[RescheduleExcistingTasks()]
 )
-
 
 
 # Creating Crew
@@ -346,5 +342,5 @@ if __name__ == "__main__":
     df_usage_metrics = pd.DataFrame([crew.usage_metrics.dict()])
     print(df_usage_metrics)
     print()
-    print("Final Answer:")
+    print("Completging this run:")
     print(result.raw)
