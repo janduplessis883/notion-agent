@@ -16,7 +16,6 @@ today = datetime.now()
 print(f"🅾️- {today}")
 
 from crewai_tools import BaseTool
-from notion_api.notionhelper import *
 import requests
 from typing import ClassVar, Union, Dict, Any, List
 from dotenv import load_dotenv
