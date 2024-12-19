@@ -1,5 +1,5 @@
 ### Notion Task Scheduler with CrewAI
-![Notion-Agent](timeblocking.png)
+![Notion-Agent](images/timeblocking.png)
 
 
 
