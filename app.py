@@ -3,7 +3,7 @@ from datetime import datetime
 import sys
 from io import StringIO
 
-from main import *
+from timeblocker import *
 
 st.title("Notion - CrewAI Timeblocking Agent")
 

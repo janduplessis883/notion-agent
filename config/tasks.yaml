@@ -7,6 +7,7 @@ data_collection:
   expected_output: >
     - A full report detailing the database schema and all retrieved pages/tasks.
     - Present all tasks in a well-formatted Markdown table, including their corresponding page_id for easy reference when scheduling.
+    - There is no need to extract the Notion page URL, this is not needed.
 
 create_new_tasks:
   description: >
@@ -29,6 +30,28 @@ reschedule_tasks:
       - Move these tasks to the next available time slot on today's date.
       - Ensure excisting tasks scheduled earlier today, but not completed, are rescheduled for a time later today.
     - Use time-blocking techniques to avoid overlapping tasks. Schedule tasks sequentially.
+    - If the current time is later than 18:00, re-schedule all today's tasks for tomorrow.
   expected_output: >
     - A detailed summary of the updated schedule, including:
       - Clear allocation of tasks during working hours with no overlaps.
+
+online_research_tasks:
+  description: >
+    Conduct detailed online research on a specified topic, focusing on NHS England-related subjects such as policies, news, clinical guidelines, or operational updates. The task requires gathering reliable, up-to-date information and presenting it in a clear and organized format.
+  expected_output: >
+    - A structured document in Markdown format.
+    - A summary section highlighting key findings.
+    - Detailed sections with headings and subheadings, elaborating on each aspect of the research.
+    - References section with properly formatted links to all sources used.
+    - Clear and actionable insights or recommendations based on the research.
+
+writer_tasks:
+  description: >
+    Compile a well-structured, professional report based on the information provided by the research agent. The task involves organizing, summarizing, and elaborating on the research findings to produce a clear and actionable document tailored to the intended audience.
+  expected_output: >
+    - A detailed report in Markdown format.
+    - An executive summary section providing a concise overview of the report.
+    - Organized content with clear headings, subheadings, and bullet points where appropriate.
+    - A recommendations section with actionable insights derived from the research.
+    - A references section with accurate citations for all sources used in the report.
+    - A polished document free of grammatical errors and inconsistencies.

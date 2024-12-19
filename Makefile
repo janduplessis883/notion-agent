@@ -16,5 +16,13 @@ all: install clean
 
 
 timeblock:
-	@python main.py
-	@echo "👍 Running CrewAI"
+	@python timeblocker.py
+	@echo "✅ Successfully ran Re-schedule Tasks with CrewAI"
+
+newtask:
+	@python new_task.py
+	@echo "✅ Successfully ran New Task Creation with CrewAI"
+
+experimental:
+	@python new_task exp.py
+	@echo "✅ Successfully ran New Task Creation EXPERIMENTAL with CrewAI"
